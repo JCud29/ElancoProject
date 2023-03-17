@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>User Dashboard</title>
+  <meta name="description" content="Elanco Group A">
+  <meta name="author" content="Group A">
+
+  <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+  
+    <div class = "mainContainer">
+
+
+        <div class = "logoContainer"></div>
+        <div class = "userBar">
+
+            <div class = "userbarBtn"><p></p></div>
+            <form action ="logout?_method=DELETE" method="POST">
+              <button type ="submit" id = "logout">Log Out</button>
+          </form>
+        </div>
+        <div class = "loginCont">
+
+
+      
+            <section class = "tableDiv">
+                <table>
+                    <tr>
+                      <th>Invoice Date</th>
+                      <th>Receipt Image</th>
+                      <th>Pet</th>
+                      <th>clinic Name</th>
+                    </tr>
+           
+                    <% for(var i = 0; i < Receipts.length; i++) { %>
+                      <tr>
+                        <td><%= Receipts[i].invoiceDate %></td>
+                        <td><a href = "/receipts/<%= Receipts[i].imagePath %>"> IMAGE</a></td>
+                        <td><%= Receipts[i].patient %></td>
+                        <td><%= Receipts[i].clinicName %></td>
+                        
+
+                    
+                      </tr>
+                      
+                    <% } %>
+                  
+                   
+                  </table>
+            </section>
+                                      <input type="button" value="Back" id = "back" onclick = "location.href ='./userDash'"><br>
+
+        </div>
+
+        
+
+    </div>
+
+</body>
+</html>

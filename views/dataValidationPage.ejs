@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Check Data Page</title>
+</head>
+<body>
+    <div class = "mainContainer">
+
+        <div class = "logoContainer"></div>
+        <div class = "loginCont">
+
+            <h1> Please check details are correct </h1>
+
+            <form action = "" method = "POST"> 
+          
+                <p><label for="clinicName">Clinic Name:</label>  
+                    
+                    <div id="clinicNameConfidence" class="ConfCheck">
+                        <p>Please check this value.</p>
+                    </div>
+                    <input type="text" name="clinicname" id="clinicName" placeholder="Please Enter the Clinic Name" value = "<%- clinicName %>"> </p> 
+                
+                <p><label for="clinicAddress">Clinic Address:</label> 
+                    <div id="clinicAddressConfidence" class="ConfCheck">
+                        <p>Please check this value.</p>
+                    </div>
+                
+                    <input type="text" name="clinicAddress" id="clinicAddress" placeholder="Please Enter The Clinic Address" value = "<%- clinicAddress %>"> </p>
+                    <p><label for="invoiceDate">Date Issued:</label>  
+                
+                        <div id="invoiceDateConfidence" class="ConfCheck">
+                            <p>Please check this value.</p>
+                        </div>
+                        <input type="text" name="invoiceDate" id="invoiceDate" placeholder="Please Enter The Date of Invoice" value = "<%= invoiceDate %>"> </p>
+                    
+                    <p><label for="Items">Products:</label> 
+                        
+                        <div id="itemsConfidence" class="ConfCheck">
+                          <p>Please check this value.</p>
+                      </div>
+                        <% for(var i = 0; i < items.length; i++) { %>
+                            <input type="text" name="Info" id="Info" placeholder="Product" value = "<%= items[i] %>">
+                          <% } %>                                                                          
+               
+                <div id="elancoProducts">
+                    <h3>items contains elanco product, potential rebate detected.</h3>
+                </div>
+
+                <p><input type = "submit" value = "Confirm"> </p>
+                    </form> </div>
+                              
+        </div>
+
+    </div>
+    </div>
+
+    <script>
+        window.history.pushState("", "", '/dataValidationPage');
+    </script>
+    
+    <script>
+        function clinicNameConfCheck(value)
+        {
+            var x = document.getElementById("clinicNameConfidence");
+
+            if (value === true) {
+                x.style.display = "block";
+                } else if ( value === false ) {
+                x.style.display = "none";
+                }
+
+            console.log(value);
+        }     
+
+        function clinicAddrConfCheck(value)
+        {
+            var x = document.getElementById("clinicAddressConfidence");
+            if (value === true) {
+                x.style.display = "block";
+                } else if ( value === false ) {
+                x.style.display = "none";
+                }
+
+            console.log(value);
+        }   
+
+        function invoiceDateConfCheck(value)
+        {
+            var x = document.getElementById("invoiceDateConfidence");
+            if (value === true) {
+                x.style.display = "block";
+                } else if ( value === false ) {
+                x.style.display = "none";
+                }
+
+            console.log(value);
+        }       
+
+        function itemsConfCheck(value)
+        {
+            var x = document.getElementById("itemsConfidence");
+            if (value === true) {
+                x.style.display = "block";  
+            } 
+            else if ( value === false ) {
+                x.style.display = "none";
+            }
+
+            console.log(value);
+        }
+
+        function elancoProductCheck(value)
+        {
+            var x = document.getElementById("elancoProducts");
+            if (value === true) {
+                x.style.display = "block";
+                } else if ( value === false ) {
+                x.style.display = "none";
+                }
+
+            console.log(value);
+        }
+
+        clinicNameConfCheck(<%- clinicNameConf %>);
+        clinicAddrConfCheck(<%- clinicAddressConf %>);
+        invoiceDateConfCheck(<%- invoiceDateConf %>);
+        itemsConfCheck(<%- itemsConf %>);
+        elancoProductCheck(<%- containsElancoProduct %>)
+
+    </script>
+</body>
+</html>
